@@ -1,0 +1,19 @@
+<h1>Store Dashboard</h1>
+
+<h2>Ratings for Your Store</h2>
+<p>Average Rating: <%= @average_rating.round(1) %></p>
+
+<table>
+  <tr>
+    <th>User</th>
+    <th>Email</th>
+    <th>Submitted Rating</th>
+  </tr>
+  <% @ratings.each do |rating| %>
+    <tr>
+      <td><%= rating.user.name %></td>
+      <td><%= rating.user.email %></td>
+      <td><%= rating.score %></td>
+    </tr>
+  <% end %>
+</table>

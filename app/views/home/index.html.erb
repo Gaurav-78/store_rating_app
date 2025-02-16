@@ -1,0 +1,21 @@
+<h1>Welcome to Store Rating App</h1>
+
+<h2>Newly Added Stores</h2>
+<ul>
+  <% @stores.each do |store| %>
+    <li>
+<strong><%= link_to store.name, store_path(store.id) %></strong>
+<p><%= store.description || "No description available" %></p>
+    </li>
+  <% end %>
+</ul>
+
+<h2>Top Rated Stores</h2>
+<ul>
+  <% @top_rated_stores.each do |store| %>
+    <li>
+<strong><%= link_to store.name, store_path(store.id) %></strong>
+Avg Rating: <%= store.ratings.average(:value)&.round(2) || "No ratings yet" %>
+    </li>
+  <% end %>
+</ul>

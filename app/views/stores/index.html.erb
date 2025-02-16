@@ -1,0 +1,29 @@
+<h1>All Stores</h1>
+
+<%= form_tag stores_path, method: :get do %>
+  <p>Search by Name: <%= text_field_tag :search_name %></p>
+  <p>Search by Address: <%= text_field_tag :search_address %></p>
+  <p><%= submit_tag "Search" %></p>
+<% end %>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Address</th>
+    <th>Overall Ratings</th>
+    <th>My Submitted Rating</th>
+    <th>Actions</th>
+  </tr>
+  <% @stores.each do |store| %>
+    <tr>
+      <td><%= store.name %></td>
+      <td><%= store.address %></td>
+      <td><%= store.average_rating %></td>
+      <td><%= current_user.ratings.find_by(store: store)&.score || 'Not Rated' %></td>
+      <td>
+        <%= link_to "Submit Rating", new_store_rating_path(store) %> |
+        <%= link_to "Modify Rating", edit_store_rating_path(store) if current_user.ratings.exists?(store: store) %>
+      </td>
+    </tr>
+  <% end %>
+</table>

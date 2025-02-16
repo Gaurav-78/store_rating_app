@@ -1,0 +1,9 @@
+<h1><%= @store.name %></h1>
+<p>Address: <%= @store.address %></p>
+<p>Overall Rating: <%= @store.overall_rating.round(1) %></p>
+
+<h2>Submit Your Rating</h2>
+<%= form_for [@store, @rating || @store.ratings.new], method: (@rating ? :patch : :post) do |f| %>
+  <p>Rating: <%= f.number_field :score, in: 1..5 %></p>
+  <p><%= f.submit "Submit Rating" %></p>
+<% end %>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Store Rating App</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <%= stylesheet_link_tag "application", media: "all", "data-turbo-track": "reload" %>
+  <%= javascript_importmap_tags %>
+</head>
+<body>
+  <header>
+  <nav>
+  <% if session[:user_id] %>
+    <%= link_to "Logout", logout_path, method: :delete, class: "btn btn-danger" %>
+  <% else %>
+    <%= link_to "Login", login_path %> |
+    <%= link_to "Sign Up", signup_path %>
+  <% end %>
+</nav>
+
+
+  </header>
+
+  <%= yield %>
+</body>
+</html>

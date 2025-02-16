@@ -1,0 +1,5 @@
+<h1>Submit Rating</h1>
+<%= form_for @rating, url: store_ratings_path(@store) do |f| %>
+  <p>Rating (1-5): <%= f.number_field :score, in: 1..5 %></p>
+  <p><%= f.submit "Submit Rating" %></p>
+<% end %>

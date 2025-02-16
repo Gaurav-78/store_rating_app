@@ -1,0 +1,21 @@
+<h1>Store Owner Dashboard</h1>
+
+<p>Welcome, <%= current_user.name %>!</p>
+
+<h2>Your Store</h2>
+<% if current_user.store.present? %>
+  <p><strong>Store Name:</strong> <%= current_user.store.name %></p>
+  <p><strong>Address:</strong> <%= current_user.store.address %></p>
+  <p><strong>Average Rating:</strong> <%= current_user.store.ratings.average(:value)&.round(2) || "No ratings yet" %></p>
+
+  <h2>Recent Ratings</h2>
+  <ul>
+    <% current_user.store.ratings.each do |rating| %>
+      <li>User: <%= rating.user.name %> - Rating: <%= rating.value %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>You don’t own a store yet.</p>
+<% end %>
+
+<%= link_to "Logout", logout_path, method: :delete, class: "btn btn-danger" %>

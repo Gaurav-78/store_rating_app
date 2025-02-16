@@ -1,0 +1,104 @@
+<style>
+
+
+ /* General Styling */
+body {
+    background-color: #1a1a1a; /* Faint dark gray background */
+    color: #e0e0e0;
+    font-family: 'Arial', sans-serif;
+    margin: 20px;
+    padding: 0;
+}
+
+/* Header Styling */
+h1 {
+    color: #ff9800;
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+/* Dashboard Stats */
+p {
+    font-size: 18px;
+    text-align: center;
+    margin: 10px 0;
+    font-weight: bold;
+}
+
+/* Table Styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #2a2a2a; /* Slightly lighter dark gray */
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #444;
+}
+
+th {
+    background-color: #3a3a3a;
+    color: #ff9800;
+    text-transform: uppercase;
+}
+
+tr:hover {
+    background-color: #404040;
+    transition: 0.3s;
+}
+
+/* Links and Buttons */
+a {
+    text-decoration: none;
+    color: #ff9800;
+    font-weight: bold;
+}
+
+a:hover {
+    color: #ff5722;
+}
+
+/* Delete Button */
+a[data-method="delete"] {
+    color: #ff4c4c;
+}
+
+a[data-method="delete"]:hover {
+    color: #ff0000;
+}
+
+</style>
+
+<h1>Admin Dashboard</h1>
+<p>Total Users: <%= @total_users %></p>
+<p>Total Stores: <%= @total_stores %></p>
+<p>Total Submitted Ratings: <%= @total_ratings %></p>
+
+<h1>All Users</h1>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Address</th>
+    <th>Role</th>
+    <th>Actions</th>
+  </tr>
+  <% @users.each do |user| %>
+    <tr>
+      <td><%= user.name %></td>
+      <td><%= user.email %></td>
+      <td><%= user.address %></td>
+      <td><%= user.role %></td>
+      <td>
+        <%= link_to 'Edit', edit_user_path(user) %> |
+        <%= link_to 'Delete', user, method: :delete, data: { confirm: 'Are you sure?' } %>
+      </td>
+    </tr>
+  <% end %>
+</table>
