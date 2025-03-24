@@ -5,7 +5,8 @@ Rails.application.routes.draw do
   get "ratings/update"
   get "stores/index"
   get "stores/show"
-
+  get "stores/dashboard"
+ get "owners/index"
   root "home#index"
 
  resources :stores do
@@ -16,7 +17,7 @@ end
 
   resources :sessions, only: [:new, :create, :destroy]
   resources :ratings, only: [:new, :create, :edit, :update] 
-  
+
   get "user/dashboard", to: "users#dashboard"  # ✅ Changed from users/dashboard to user/dashboard
 get "owner/dashboard", to: "owner#dashboard"
 get "admin/dashboard", to: "admin#dashboard"
@@ -36,7 +37,7 @@ get "/logout", to: "sessions#destroy"
         get 'dashboard', to: 'stores#dashboard'
   end
   resources :stores  # ✅ This ensures store_path(store.id) works
-
+P
   namespace :owner do
     get "dashboard", to: "owners#dashboard"
     get "edit_store", to: "owners#edit_store"
